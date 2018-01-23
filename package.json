@@ -1,0 +1,26 @@
+{
+  "name": "my-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "eslint-config-kitty": "^1.4.5",
+    "nodemon": "^1.14.11"
+  },
+  "dependencies": {
+    "@feathersjs/configuration": "^1.0.2",
+    "@feathersjs/express": "^1.1.2",
+    "@feathersjs/feathers": "^3.0.5",
+    "compression": "^1.7.1",
+    "cors": "^2.8.4",
+    "helmet": "^3.9.0",
+    "pino": "^4.10.3",
+    "pino-multi-stream": "^3.1.2",
+    "winston": "^3.0.0-rc1",
+    "winston-daily-rotate-file": "^1.7.2"
+  },
+  "scripts": {
+    "start": "nodemon --watch src src/"
+  }
+}
