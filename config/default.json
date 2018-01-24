@@ -20,5 +20,8 @@
   },
   "local": {
     "usernameField": "identifier"
+  },
+  "db": {
+    "url": "mongodb://localhost:27017/my_auth"
   }
 }

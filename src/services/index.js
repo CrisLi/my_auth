@@ -10,7 +10,9 @@ mongoose.Promise = global.Promise;
 
 module.exports = (app) => {
 
-  mongoose.connect('mongodb://localhost:27017/my_auth')
+  const { url } = app.get('db');
+
+  mongoose.connect(url)
     .then(() => {
       logger.info('Database connect successfully.');
     })
