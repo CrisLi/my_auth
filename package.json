@@ -10,15 +10,17 @@
   },
   "dependencies": {
     "@feathersjs/configuration": "^1.0.2",
+    "@feathersjs/errors": "^3.2.1",
     "@feathersjs/express": "^1.1.2",
     "@feathersjs/feathers": "^3.0.5",
     "compression": "^1.7.1",
     "cors": "^2.8.4",
+    "feathers-mongoose": "^6.1.0",
     "helmet": "^3.9.0",
+    "mongoose": "^5.0.1",
     "pino": "^4.10.3",
     "pino-multi-stream": "^3.1.2",
-    "winston": "^3.0.0-rc1",
-    "winston-daily-rotate-file": "^1.7.2"
+    "rotating-file-stream": "^1.3.4"
   },
   "scripts": {
     "start": "nodemon --watch src src/"

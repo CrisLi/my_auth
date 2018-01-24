@@ -1,23 +1,35 @@
-const fs = require('fs');
 const path = require('path');
 const pino = require('pino');
 const { multistream } = require('pino-multi-stream');
+const rfs = require('rotating-file-stream');
+const { log = {} } = require('config');
 
-const logDir = path.resolve(__dirname, '../logs');
+const pretty = pino.pretty();
 
-if (!fs.existsSync(logDir)) {
-  fs.mkdir(logDir);
-}
+pretty.pipe(process.stdout);
+
+const logDir = log.dir || path.resolve(__dirname, '../logs');
+
+const appLogStream = rfs(path.join(logDir, 'app.log'), {
+  size: '5M',
+  interval: '1d',
+  compress: 'gzip'
+});
+
+const errorLogStream = rfs(path.join(logDir, 'error.log'), {
+  size: '5M',
+  interval: '1d',
+  compress: 'gzip'
+});
 
 const streams = [
-  { stream: fs.createWriteStream(path.resolve(logDir, 'app.log')) },
-  { level: 'error', stream: fs.createWriteStream(path.resolve(logDir, 'error.log')) },
-  { level: 'info', stream: process.stdout, prettyPrint: true }
+  { level: 'info', stream: appLogStream },
+  { level: 'error', stream: errorLogStream },
+  { level: 'debug', stream: pretty }
 ];
 
 const logger = pino({
-  prettyPrint: true
-});
-// }, multistream(streams));
+  level: log.level
+}, multistream(streams));
 
 module.exports = logger;
