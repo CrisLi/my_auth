@@ -12,13 +12,11 @@
   "auth": {
     "path": "/auth",
     "secret": "!__supersecret__!",
-    "token": {
-      "payload": ["org", "roles"]
+    "jwt": {
+      "issuer": "my_auth",
+      "audience": "my_auth",
+      "expiresIn": "1h"
     }
-  },
-  "jwt": {
-    "iss": "my_auth",
-    "aud": "my_auth"
   },
   "local": {
     "usernameField": "identifier"
