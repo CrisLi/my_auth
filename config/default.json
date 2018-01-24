@@ -11,10 +11,14 @@
   },
   "auth": {
     "path": "/auth",
-    "secret": "!__supersecret__!"
+    "secret": "!__supersecret__!",
+    "token": {
+      "payload": ["org", "roles"]
+    }
   },
   "jwt": {
-    
+    "iss": "my_auth",
+    "aud": "my_auth"
   },
   "local": {
     "usernameField": "identifier"
