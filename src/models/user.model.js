@@ -4,7 +4,8 @@ const user = {
   identifier: {
     type: String,
     unique: true,
-    select: false
+    select: false,
+    required: true
   },
   username: {
     type: String,
@@ -13,7 +14,7 @@ const user = {
   password: {
     type: String,
     required: true,
-    select: false
+    // select: false
   },
   org: {
     type: String,

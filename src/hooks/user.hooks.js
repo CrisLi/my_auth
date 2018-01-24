@@ -1,27 +1,26 @@
 const { Conflict } = require('@feathersjs/errors');
+const auth = require('@feathersjs/authentication');
+const local = require('@feathersjs/authentication-local');
 const { disallow } = require('feathers-hooks-common');
+const userIdentifier = require('./user.identifier');
 
 module.exports = {
   before: {
     create: [
-      async (context) => {
-        const { data } = context;
-        data.identifier = Buffer.from(`${data.username}@${data.org}`).toString('base64');
-      }
+      local.hooks.hashPassword({ passwordField: 'password' }),
+      userIdentifier
     ],
-    remove: disallow(),
+    find: [
+      auth.hooks.authenticate('jwt')
+    ],
     update: disallow(),
-    patch: disallow()
+    patch: disallow(),
+    remove: disallow()
   },
-  after: {
-    create: [
-      async (context) => {
-        const { result } = context;
-        delete result['identifier'];
-        delete result['password'];
-      }
-    ]
-  },
+  after: [
+    local.hooks.protect('password'),
+    local.hooks.protect('identifier')
+  ],
   error: {
     create: [
       async (context) => {

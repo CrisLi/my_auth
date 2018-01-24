@@ -8,5 +8,15 @@
   },
   "log": {
     "level": "debug"
+  },
+  "auth": {
+    "path": "/auth",
+    "secret": "!__supersecret__!"
+  },
+  "jwt": {
+    
+  },
+  "local": {
+    "usernameField": "identifier"
   }
 }
