@@ -9,6 +9,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const logger = require('./logger');
+const db = require('./db');
 const services = require('./services');
 const appHooks = require('./hooks/app.hooks');
 
@@ -22,6 +23,7 @@ app.use(compress());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.configure(db);
 app.configure(express.rest());
 app.configure(auth(app.get('auth')));
 app.configure(jwt(app.get('jwt')));

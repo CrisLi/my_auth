@@ -1,8 +1,8 @@
 {
   "env": {
     "node": true,
-    "mocha": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "extends": "kitty"
 }
